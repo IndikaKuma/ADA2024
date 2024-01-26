@@ -16,7 +16,7 @@ spec:
         app: prediction-ui
     spec:
       containers:
-      - image: gcr.io/ada2023/prediction-ui:0.0.1 # Docker image name, that we pushed to GCR - use your project id
+      - image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/prediction-ui:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
         name: prediction-ui
         ports:
         - containerPort: 5000

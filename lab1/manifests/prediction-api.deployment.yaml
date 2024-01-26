@@ -16,15 +16,15 @@ spec:
         app: prediction-api
     spec:
       containers:
-      - image: gcr.io/ada2023/prediction-api:0.0.1 # Docker image name, that we pushed to GCR
+      - image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/prediction-api:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
         name: prediction-api
         ports:
         - containerPort: 5000
           protocol: TCP
         env:
         - name: PROJECT_ID
-          value: ada2023  # use your project id
+          value: ada2024  # use your project id
         - name: MODEL_REPO
-          value: adamodels # use your GCP bucket id
+          value: ada2024_models # use your GCP bucket id
         - name: MODEL_NAME
           value: model.h5
