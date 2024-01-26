@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: training-api
+  name: training-api
+  namespace: myapps
+spec:
+  replicas: 2 # Creating two replicas of the POD
+  selector:
+    matchLabels:
+      app: training-api
+  template:
+    metadata:
+      labels:
+        app: training-api
+    spec:
+      containers:
+      - image: gcr.io/ada2023/training-api:0.0.1 # Docker image name, that we pushed to GCR - use your project id
+        name: training-api
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: PROJECT_ID
+          value: ada2023  # use your project id
+        - name: MODEL_REPO
+          value: adamodels # use your GCP bucket id
+        - name: MODEL_NAME
+          value: model.h5

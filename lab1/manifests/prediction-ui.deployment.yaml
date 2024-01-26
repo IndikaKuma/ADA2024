@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: prediction-ui
+  name: prediction-ui
+  namespace: myapps
+spec:
+  replicas: 2 # Creating two replicas of the POD
+  selector:
+    matchLabels:
+      app: prediction-ui
+  template:
+    metadata:
+      labels:
+        app: prediction-ui
+    spec:
+      containers:
+      - image: gcr.io/ada2023/prediction-ui:0.0.1 # Docker image name, that we pushed to GCR - use your project id
+        name: prediction-ui
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: PREDICTOR_API
+          value: http://prediction-api-service:5001/diabetes_predictor
