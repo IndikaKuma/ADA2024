@@ -6,7 +6,7 @@
         "build",
         "-t",
         "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/prediction-api:0.0.1",
-        "./lab2/prediction-api"
+        "./lab1/prediction-api"
       ]
     },
     {
@@ -15,7 +15,7 @@
         "build",
         "-t",
         "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/prediction-ui:0.0.1",
-        "./lab2/prediction-ui"
+        "./lab1/prediction-ui"
       ]
     },
    {
@@ -24,7 +24,7 @@
         "build",
         "-t",
         "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/training-api:0.0.1",
-        "./lab2/training-api"
+        "./lab1/training-api"
       ]
     },
     {
