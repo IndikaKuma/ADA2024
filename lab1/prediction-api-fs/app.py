@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
-@app.route('/prediction-cp/results', methods=['POST'])
+@app.route('/diabetes_predictor', methods=['POST'])
 def predict_perf():
     # receive the prediction request data as the message body
     content = request.get_json()
