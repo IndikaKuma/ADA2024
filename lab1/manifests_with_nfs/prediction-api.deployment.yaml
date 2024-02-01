@@ -18,6 +18,7 @@ spec:
       containers:
       - image: us-central1-docker.pkg.dev/ada2024/labrepo/prediction-api-fs:0.0.1 # Docker image name, that we pushed to GCR
         name: prediction-api     # POD name
+        imagePullPolicy: Always
         volumeMounts:
         - mountPath: /usr/src/models
           name: model-repo
