@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: training-api-fs
+  name: training-api-fs
+  namespace: diabetes-fs
+spec:
+  replicas: 2 # Creating two PODs for our app
+  selector:
+    matchLabels:
+      app: training-api-fs
+  template:
+    metadata:
+      labels:
+        app: training-api-fs
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/ada2024/labrepo/training-api-fs:0.0.1 # Docker image name, that we pushed to GCR
+        name: training-api     # POD name
+        volumeMounts:
+        - mountPath: /usr/src/models
+          name: model-repo
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: MODEL_REPO
+          value: /usr/src/models
+      volumes:
+      - name: model-repo
+        persistentVolumeClaim:
+          claimName: nfs-model-repo

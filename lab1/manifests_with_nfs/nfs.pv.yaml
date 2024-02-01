@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+  namespace: diabetes-fs
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: nfs-server.mynfs.svc.cluster.local
+    path: "/"
+  mountOptions:
+    - nfsvers=4.2
