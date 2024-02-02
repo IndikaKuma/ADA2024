@@ -16,7 +16,7 @@ spec:
         app: training-api-fs
     spec:
       containers:
-      - image: us-central1-docker.pkg.dev/project-ada2024-david/labrepo/training-api-fs:0.0.1 # Docker image name, that we pushed to GCR
+      - image: us-central1-docker.pkg.dev/project-ada2024-david/labrepo-david/training-api-fs:0.0.1 # Docker image name, that we pushed to GCR
         name: training-api     # POD name
         imagePullPolicy: Always
         volumeMounts:
