@@ -16,7 +16,7 @@ spec:
         app: training-api
     spec:
       containers:
-      - image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/training-api:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
+      - image: us-central1-docker.pkg.dev/project-ada2024-david/labrepo-david/training-api:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
         name: training-api
         ports:
         - containerPort: 5000
