@@ -23,8 +23,8 @@ spec:
           protocol: TCP
         env:
         - name: PROJECT_ID
-          value: ada2024  # use your project id
+          value: project-ada2024-david  # use your project id
         - name: MODEL_REPO
-          value: ada2024_models # use your GCP bucket id
+          value: labrepo-david # use your GCP bucket id
         - name: MODEL_NAME
           value: model.h5
