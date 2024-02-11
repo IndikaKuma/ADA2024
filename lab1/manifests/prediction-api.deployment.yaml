@@ -16,7 +16,7 @@ spec:
         app: prediction-api
     spec:
       containers:
-      - image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/prediction-api:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
+      - image: us-central1-docker.pkg.dev/project-ada2024-david/labrepo-david/prediction-api:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
         name: prediction-api
         ports:
         - containerPort: 5000
