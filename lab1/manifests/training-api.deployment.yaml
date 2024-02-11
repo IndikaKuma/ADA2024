@@ -22,9 +22,12 @@ spec:
         - containerPort: 5000
           protocol: TCP
         env:
+        - name: LOCATION
+          value: us-central1 # use your bucket location
         - name: PROJECT_ID
           value: project-ada2024-david  # use your project id
         - name: MODEL_REPO
           value: bucket-david-ada-2024 # use your GCP bucket id
         - name: MODEL_NAME
           value: model.h5
+
