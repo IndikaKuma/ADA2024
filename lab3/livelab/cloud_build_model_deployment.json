@@ -4,7 +4,7 @@
        "name": "gcr.io/cloud-builders/gsutil",
        "args": [
            "cp",
-		   "gs://YOUR_MODEL_REPO/model.h5",
+		   "gs://${_MODEL_REPO}/model.h5",
            "./lab2/prediction-ui-embedded"
         ]
     },
