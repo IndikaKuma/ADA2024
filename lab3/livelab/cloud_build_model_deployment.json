@@ -5,7 +5,7 @@
        "args": [
            "cp",
             "gs://${_MODEL_REPO}/model.h5",
-            "./lab2/prediction-ui-embedded"
+            "./lab3/prediction-ui-embedded"
         ]
     },
     {
