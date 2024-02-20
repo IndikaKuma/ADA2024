@@ -5,7 +5,7 @@
        "args": [
            "cp",
 		   "gs://YOUR_MODEL_REPO/model.h5",
-           "./lab2/prediction-ui-embedded"
+           "./lab3/prediction-ui-embedded"
         ]
     },
     {
@@ -13,7 +13,7 @@
       "entrypoint": "/bin/sh",
       "args": [
         "-c",
-        "cd ./lab2/prediction-ui-embedded && cp model.h5 ./testResources && python -m venv .myenv && . .myenv/bin/activate && python -m pip install --upgrade pip && python -m pip install -r requirements_dev.txt && python -m pytest --junitxml=${SHORT_SHA}_test_log.xml ./tests"
+        "cd ./lab3/prediction-ui-embedded && cp model.h5 ./testResources && python -m venv .myenv && . .myenv/bin/activate && python -m pip install --upgrade pip && python -m pip install -r requirements_dev.txt && python -m pytest --junitxml=${SHORT_SHA}_test_log.xml ./tests"
       ]
     },
     {
@@ -22,7 +22,7 @@
         "build",
         "-t",
         "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/prediction-ui-embedded:0.0.1",
-        "./lab2/prediction-ui-embedded"
+        "./lab3/prediction-ui-embedded"
       ]
     },
     {
