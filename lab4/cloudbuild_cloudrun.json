@@ -1,0 +1,51 @@
+{
+  "steps": [	
+    {
+      "name": "python:3.10.8-slim-buster",
+      "entrypoint": "/bin/sh",
+      "args": [
+        "-c",
+        "cd ./lab4/deliveryservice-bq && python -m venv .myenv && . .myenv/bin/activate && pip install -r requirements_dev.txt && python -m pytest --junitxml=${SHORT_SHA}_test_log.xml",
+        "--user"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "build",
+        "-t",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/deliveryservice-bq-api:0.0.1",
+        "./lab4/deliveryservice-bq"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "push",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/deliveryservice-bq-api:0.0.1"
+      ]
+    },
+    {
+      "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+      "entrypoint": "gcloud",
+       "args": [
+        "run",
+        "deploy",
+        "delivery-service",
+        "--image",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/deliveryservice-bq-api:0.0.1",
+        "--region",
+        "us-central1",
+        "--platform",
+        "managed",
+        "--port",
+        "5000",
+        "--cpu",
+        "2",
+        "--memory",
+        "4G",
+        "--allow-unauthenticated"
+      ]
+    }
+  ]
+}

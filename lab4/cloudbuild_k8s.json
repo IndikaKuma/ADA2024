@@ -1,0 +1,55 @@
+{
+  "steps": [
+   {
+      "name": "python:3.10.8-slim-buster",
+      "entrypoint": "/bin/sh",
+      "args": [
+        "-c",
+        "cd ./lab4/deliveryservice-bq && python -m venv .myenv && . .myenv/bin/activate && pip install -r requirements_dev.txt && python -m pytest --junitxml=${SHORT_SHA}_test_log.xml",
+        "--user"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "build",
+        "-t",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/deliveryservice-bq-api:0.0.1",
+        "./lab4/deliveryservice-bq"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "push",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/deliveryservice-bq-api:0.0.1"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/kubectl",
+       "args": [
+        "apply",
+        "-f",
+        "lab4/k8smanifests/namespace.yaml"
+      ],
+	  "env": [
+        "CLOUDSDK_COMPUTE_REGION=us-central1-c",
+        "CLOUDSDK_COMPUTE_ZONE=us-central1-c",
+        "CLOUDSDK_CONTAINER_CLUSTER=cluster-1"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/kubectl",
+       "args": [
+        "apply",
+        "-f",
+        "lab4/k8smanifests"
+      ],
+	  "env": [
+        "CLOUDSDK_COMPUTE_REGION=us-central1-c",
+        "CLOUDSDK_COMPUTE_ZONE=us-central1-c",
+        "CLOUDSDK_CONTAINER_CLUSTER=cluster-1"
+      ]
+    }
+  ]
+}
