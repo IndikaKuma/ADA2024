@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deliveryservice-api
+  name: deliveryservice-api
+  namespace: deliverydomain
+spec:
+  replicas: 2 # Creating two replicas of the POD
+  selector:
+    matchLabels:
+      app: deliveryservice-api
+  template:
+    metadata:
+      labels:
+        app: deliveryservice-api
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/ada2024/labrepo/deliveryservice-bq-api:0.0.1 # Docker image name, that we pushed to Artifact registry - use your project id, location, etc
+        name: deliveryservice-api
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: DB_URL
+          value: bigquery://ada2024/deliverydb  # use bigquery db url

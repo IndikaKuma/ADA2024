@@ -1,0 +1,58 @@
+{
+  "steps": [
+    {
+       "name": "gcr.io/cloud-builders/gsutil",
+       "args": [
+           "cp",
+            "gs://${_MODEL_REPO}/model.h5",
+            "./lab3/livelab/prediction-ui-embedded"
+        ]
+    },
+    {
+      "name": "python:3.10.8-slim-buster",
+      "entrypoint": "/bin/sh",
+      "args": [
+        "-c",
+        "cd ./lab3/livelab/prediction-ui-embedded && cp model.h5 ./testResources && python -m venv .myenv && . .myenv/bin/activate && python -m pip install --upgrade pip && python -m pip install -r requirements_dev.txt && python -m pytest --junitxml=${SHORT_SHA}_test_log.xml ./tests"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "build",
+        "-t",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/prediction-ui-embedded:0.0.1",
+        "./lab3/livelab/prediction-ui-embedded"
+      ]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "push",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/prediction-ui-embedded:0.0.1"
+      ]
+    },
+    {
+      "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+      "entrypoint": "gcloud",
+      "args": [
+        "run",
+        "deploy",
+        "prediction-service-embedded",
+        "--image",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/prediction-ui-embedded:0.0.1",
+        "--region",
+        "us-central1",
+        "--platform",
+        "managed",
+        "--port",
+        "5000",
+        "--cpu",
+        "2",
+        "--memory",
+        "4G",
+        "--allow-unauthenticated"
+      ]
+    }
+  ]
+}

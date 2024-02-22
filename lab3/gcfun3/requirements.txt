@@ -1,0 +1,7 @@
+pandas
+keras
+numpy
+tensorflow
+h5py
+google-cloud-storage
+google-cloud-pubsub
