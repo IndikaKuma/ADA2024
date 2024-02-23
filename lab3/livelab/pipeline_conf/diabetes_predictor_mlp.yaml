@@ -106,9 +106,9 @@ root:
                 producerTask: data-ingestion
           parameters:
             model_bucket:
-              componentInputParameter: labrepo-david
+              componentInputParameter: model_repo
             project:
-              componentInputParameter: project-ada2024-david
+              componentInputParameter: project_id
         taskInfo:
           name: mlp-training
   inputDefinitions:
