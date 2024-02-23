@@ -1,6 +1,6 @@
 {
   "project_id": "project-ada2024-david",
-  "data_bucket": "labrepo-david",
+  "data_bucket": "adadata-david",
   "trainset_filename": "training_set.csv",
   "model_repo": "adamodels-david"
 }
