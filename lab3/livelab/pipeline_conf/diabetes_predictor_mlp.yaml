@@ -55,7 +55,7 @@ deploymentSpec:
         command:
         - python3
         - /pipelines/component/src/component.py
-        image: us-central1-docker.pkg.dev/ada2024/labrepo/dataingestor:0.0.1
+        image: us-central1-docker.pkg.dev/project-ada2024-david/labrepo-david/dataingestor:0.0.1
     exec-mlp-training:
       container:
         args:
@@ -70,7 +70,7 @@ deploymentSpec:
         command:
         - python3
         - /pipelines/component/src/component.py
-        image: us-central1-docker.pkg.dev/ada2024/labrepo/mlptrainer:0.0.1
+        image: us-central1-docker.pkg.dev/project-ada2024-david/labrepo-david/mlptrainer:0.0.1
 pipelineInfo:
   name: diabetes-predictor-mlp
 root:
@@ -106,9 +106,9 @@ root:
                 producerTask: data-ingestion
           parameters:
             model_bucket:
-              componentInputParameter: model_repo
+              componentInputParameter: labrepo-david
             project:
-              componentInputParameter: project_id
+              componentInputParameter: project-ada2024-david
         taskInfo:
           name: mlp-training
   inputDefinitions:
