@@ -44,7 +44,9 @@
         "2",
         "--memory",
         "4G",
-        "--allow-unauthenticated"
+        "--allow-unauthenticated",
+        "--update-env-vars",
+        "DB_URL=bigquery://$PROJECT_ID/deliverydb"
       ]
     }
   ]
