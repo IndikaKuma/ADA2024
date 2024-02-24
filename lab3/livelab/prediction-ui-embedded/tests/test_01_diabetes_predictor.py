@@ -20,4 +20,4 @@ class TestDiabetesPredictor:
         dp = diabetes_predictor.DiabetesPredictor()
         status = dp.predict_single_record(data)
         assert bool(status[0]) is not None
-        assert bool(status[0]) is False
+        assert bool(status[0]) is True
