@@ -1,5 +1,5 @@
-# Using python 3.7 full image
-FROM python:3.7.7-buster
+# Using python 3.10 slim image as the base image
+FROM python:3.10.7-slim
 # Defining working directory and copy the requirements file
 WORKDIR /usr/src/myapp
 COPY requirements.txt .
