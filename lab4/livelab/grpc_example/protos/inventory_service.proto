@@ -1,0 +1,22 @@
+syntax = "proto3"; // protocol buffers version
+package ordermgt;
+// The inventory service definition.
+service InventoryService {
+    // Get the available quantity of a product in the warehouse
+    rpc GetProductQuantity (ProductType) returns (Quantity) {
+    }
+    // Accepts a stream of ProductTypes, returning a StockSummary when aggregation is completed.
+    rpc GetStockSummary (stream ProductType) returns (StockSummary) {
+    }
+}
+
+message ProductType {
+    string type = 1;
+}
+message Quantity {
+    int32 amount = 1;
+    string metric = 2;
+}
+message StockSummary {
+    map<string, Quantity> productStocks = 1;
+}

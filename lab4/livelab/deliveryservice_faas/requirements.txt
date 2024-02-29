@@ -1,0 +1,6 @@
+flask==2.3.3
+pandas
+numpy
+sqlalchemy
+sqlalchemy-utils
+sqlalchemy-bigquery

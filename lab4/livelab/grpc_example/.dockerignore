@@ -1,0 +1,4 @@
+.git
+.gitignore
+inventory_service_client.py
+Dockerfile*

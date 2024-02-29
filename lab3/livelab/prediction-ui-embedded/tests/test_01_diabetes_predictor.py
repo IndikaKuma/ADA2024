@@ -13,7 +13,7 @@ class TestDiabetesPredictor:
     def execute_before_any_test(self):
         os.environ["MODEL_NAME"] = "testResources/model.h5"
 
-    # your setup code goes here, executed ahead of first test
+    # your setup code goes here, executed ahead of the first test
     def test_predict_single_record(self):
         with open('testResources/prediction_request.json') as json_file:
             data = pd.read_json(json_file)
