@@ -1,8 +1,9 @@
 from db import Base, engine
 from resources.delivery import Delivery
 from resources.status import Status
+import functions_framework
 
-
+@functions_framework.http
 def create_delivery(request):
     from flask import abort
     if request.method == 'POST':
@@ -12,7 +13,7 @@ def create_delivery(request):
     else:
         return abort(405)
 
-
+@functions_framework.http
 def get_delivery(request):
     print(request.path)
     from flask import abort
@@ -24,7 +25,7 @@ def get_delivery(request):
     else:
         return abort(405)
 
-
+@functions_framework.http
 def update_delivery_status(request):
     from flask import abort
     if request.method == 'PUT':
@@ -36,7 +37,7 @@ def update_delivery_status(request):
     else:
         return abort(405)
 
-
+@functions_framework.http
 def delete_delivery(request):
     from flask import abort
     if request.method == 'DELETE':
