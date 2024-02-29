@@ -13,7 +13,7 @@ class Delivery:
     def create(body):
         session = Session()
         d_id = body['id']
-        delivery = session.query(DeliveryDAO).filter(DeliveryDAO.id == int(body['id']))[0]
+        delivery = session.query(DeliveryDAO).filter(DeliveryDAO.id == int(body['id'])).first()
         if delivery:
             session.close()
             return jsonify({'message': f'There is already delivery with id {d_id}'}), 403
