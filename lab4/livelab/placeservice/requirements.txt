@@ -1,4 +1,6 @@
 flask
+connexion[flask]
+connexion[uvicorn]
 sqlalchemy
 # connexion
 pathlib
