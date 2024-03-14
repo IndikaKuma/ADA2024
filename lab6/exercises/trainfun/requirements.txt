@@ -4,4 +4,4 @@ tensorflow
 numpy
 h5py
 google-cloud-storage
-flask
+flask==2.3.3
