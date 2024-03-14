@@ -37,7 +37,7 @@ training_subprocess:
     - trainModel:
         call: http.post
         args:
-          url: https://your_cloud_function_url
+          url: https://your_cloud_function_url/train_diabetes_predictor
           body:
             project_id: ${pId}
             d_bucket: ${fBucket}
