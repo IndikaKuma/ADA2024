@@ -34,7 +34,7 @@ class Callable:
         elif event_type == "OrderCreated":
             self.product.put(data["product_type"], data["quantity"])
             data = {
-                "message": "The requested quantity cannot be satisfied"
+                "message": "The inventory was updated"
             }
             data = json.dumps(data).encode("utf-8")
             publish_message(project=self.project, topic="inventory_status", message=data, event_type="InventoryUpdated")
