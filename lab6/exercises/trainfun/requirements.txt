@@ -1,0 +1,7 @@
+pandas
+keras
+tensorflow
+numpy
+h5py
+google-cloud-storage
+flask
