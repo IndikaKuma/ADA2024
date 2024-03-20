@@ -1,0 +1,59 @@
+{
+  "$schema": "http://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "output_encoding": "json",
+  "name": "InventoryOrderAggregate",
+  "port": 8081,
+  "endpoints": [    
+    {
+      "endpoint": "/orders/{id}",
+      "method": "GET",
+      "extra_config": {
+        "proxy": {
+          "sequential": true
+        }
+      },
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/orders/{id}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://order_record_service_ct:5000/"
+          ],
+          "disable_host_sanitize": false,
+          "mapping": {
+            "product_type": "type"
+          },
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 60,
+              "name": "circuit-breaker-1",
+              "timeout": 40,
+              "max_errors": 1,
+              "log_status_change": true
+            }
+          },
+          "blacklist": []
+        },
+        {
+          "url_pattern": "/products/{resp0_type}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://inventory_service_ct:5000/"
+          ],
+          "disable_host_sanitize": true,
+          "extra_config": {},
+          "blacklist": [
+            "name"
+          ]
+        }
+      ]
+    }
+  ],
+  "extra_config": {},
+  "timeout": "3000ms",
+  "cache_ttl": "300s"
+}
