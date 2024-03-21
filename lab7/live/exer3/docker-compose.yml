@@ -26,13 +26,13 @@ services:
       - "5001:5000"
   diabetes_predictor_service:
     build:
-      context: ./../../../lab6/modelservice
+      context: ./../../../lab6/exercises/modelservice
     container_name: diabetes_predictor_service_ct
     ports:
       - "5002:5000"
   supplier_service:
     build:
-      context: ./../../../lab6/supplierservice
+      context: ./../../../lab6/exercises/supplierservice
     container_name: supplier_service_ct
     ports:
       - "5003:5000"
