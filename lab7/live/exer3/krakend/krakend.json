@@ -46,11 +46,12 @@
             ]
           },
           "host": [
-            "https://diabetes-predictor-training-api-komvtsziza-uc.a.run.app/"
+            "https://us-central1-ada2024.cloudfunctions.net/diabetes-predictor-training-api/"
           ],
           "disable_host_sanitize": false
         }
       ]
     }
-  ]
+  ],
+  "timeout": "3000ms"
 }
