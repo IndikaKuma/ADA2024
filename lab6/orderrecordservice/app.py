@@ -1,7 +1,5 @@
 from flask import Flask, request
-from datetime import datetime, date, timedelta
-from functools import wraps
-from flask import Response
+from flask import make_response
 from resources.order import Order, Orders
 
 app = Flask(__name__)
@@ -10,27 +8,11 @@ orders = Orders()
 placeRecord = Order()
 
 
-# Thanks https://www.maskaravivek.com/post/how-to-add-http-cachecontrol-headers-in-flask/
-def docache(minutes=5, content_type='application/json; charset=utf-8'):
-    """ Flask decorator that allow to set Cache headers. """
-
-    def fwrap(f):
-        @wraps(f)
-        def wrapped_f(*args, **kwargs):
-            r = f(*args, **kwargs)
-            rsp = Response(r, content_type=content_type)
-            rsp.headers.add('Cache-Control', 'public,max-age=%d' % int(60 * minutes))
-            return rsp
-
-        return wrapped_f
-
-    return fwrap
-
-
 @app.route('/orders/<string:id>', methods=['GET'])
-@docache(minutes=1, content_type='application/json')
 def get_order(id):
-    return placeRecord.get(id)
+    res = make_response(placeRecord.get(id))
+    res.headers.add('Cache-control', "max-age=180, public")
+    return res
 
 
 @app.route('/orders/<string:id>', methods=['PUT'])
