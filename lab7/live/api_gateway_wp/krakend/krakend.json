@@ -1,4 +1,5 @@
 {
+  "$schema": "http://www.krakend.io/schema/v3.json",
   "version": 3,
   "output_encoding": "json",
   "name": "OrderApprovalAPI",
@@ -9,7 +10,7 @@
       "method": "POST",
       "output_encoding": "json",
 	  "input_headers": [
-        "Authorization"
+           "Authorization"
         ],
       "backend": [
         {
@@ -45,5 +46,6 @@
         }
       ]
     }
-  ]
+  ],
+  "timeout": "3000ms"
 }
