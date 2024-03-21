@@ -18,7 +18,6 @@ def docache(minutes=5, content_type='application/json; charset=utf-8'):
         @wraps(f)
         def wrapped_f(*args, **kwargs):
             r = f(*args, **kwargs)
-            then = datetime.now() + timedelta(minutes=minutes)
             rsp = Response(r, content_type=content_type)
             rsp.headers.add('Cache-Control', 'public,max-age=%d' % int(60 * minutes))
             return rsp
