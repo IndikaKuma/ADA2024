@@ -28,7 +28,7 @@ The result from the above call will include an EXECUTION ID, for example,
 
 e.g., 366b3c47-85fd-4bec-aace-fab495953644
   
-Get the result of the execution via API gateway
+Get the result of the execution via the API gateway
 
 curl --request GET \
   --url http://YOUR_VM:8080/orders/EXEUTION_ID \
