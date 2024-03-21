@@ -39,7 +39,7 @@
           "sd": "static",
           "host": [
             "http://inventory_service_ct1:5000/",
-			"http://inventory_service_ct2:5000/"
+	     "http://inventory_service_ct2:5000/"
           ]
         }
       ]
