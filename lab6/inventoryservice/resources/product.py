@@ -16,8 +16,8 @@ class Product:
     def get(self, pname):
         for record in inventories:
             if pname == record["name"]:
-                return jsonify(record), 200
-        return jsonify({"message": "No product for " + pname}), 404, {'Cache-control': 'max-age=180, public'}
+                return jsonify(record), 200, {'Cache-control': 'max-age=180, public'}
+        return jsonify({"message": "No product for " + pname}), 404
 
     def put(self, pname, value):
         for record in inventories:
