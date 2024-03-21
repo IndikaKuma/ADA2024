@@ -54,5 +54,5 @@
     }
   ],
   "timeout": "3000ms",
-  "cache_ttl": "300s"
+  "cache_ttl": "30s"
 }
