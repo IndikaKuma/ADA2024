@@ -1,19 +1,19 @@
 version: '3.9'
 
-volumes:
-  postgres_data:
-    driver: local
-
 services:
   keycloak:
     image: keycloak/keycloak:24.0.2
     container_name: keycloak
     user: root
     volumes:
-      - ./keycloak_data/:/opt/jboss/keycloak/standalone/data/
+      - ./keycloak_data/:/opt/keycloak/data/
+      - "./keycloak_data/server.crt.pem:/etc/x509/https/tls.crt"   # Map certificate to container
+      - "./keycloak_data/server.key.pem:/etc/x509/https/tls.key"   # Map private key to container
     environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HTTPS_CERTIFICATE_FILE=/etc/x509/https/tls.crt
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/etc/x509/https/tls.key
     command:
       - start-dev
     ports:

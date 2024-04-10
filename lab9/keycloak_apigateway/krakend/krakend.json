@@ -23,9 +23,9 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://keycloak:8080/auth/realms/ada2023/protocol/openid-connect/certs",
+          "jwk_url": "http://keycloak:8080/realms/ada2024/protocol/openid-connect/certs",
           "disable_jwk_security": true
-        }
+        } 
       },
       "backend": [
         {
@@ -60,7 +60,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://keycloak:8080/auth/realms/ada2023/protocol/openid-connect/certs",
+          "jwk_url": "http://keycloak:8080/realms/ada2024/protocol/openid-connect/certs",
           "disable_jwk_security": true
         }
       },
