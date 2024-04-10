@@ -6,7 +6,7 @@ volumes:
 
 services:  
   keycloak:
-    image: jboss/keycloak:16.1.1
+    image: keycloak/keycloak:24.0.2
     container_name: keycloak
     user: root
     volumes:
