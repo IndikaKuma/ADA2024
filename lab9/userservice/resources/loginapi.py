@@ -1,3 +1,4 @@
+import bcrypt
 from flask import make_response, jsonify
 
 from daos.user_dao import UserDAO
@@ -16,25 +17,33 @@ class LoginAPI:
             # check if user already exists
             user = session.query(UserDAO).filter(UserDAO.email == post_data.get('email')).first()
             session.close()
-            if user:
+            if user and bcrypt.checkpw(
+                   post_data.get('password').encode('utf-8'), user.password
+            ):
                 auth_token = encode_auth_token(user.id)
                 if auth_token:
-                    responseObject = {
+                    res = {
                         'status': 'success',
                         'message': 'Successfully logged in.',
                         'auth_token': auth_token
                     }
-                return make_response(jsonify(responseObject)), 200
+                    return make_response(jsonify(res)), 200
+                else:
+                    res = {
+                        'status': 'fail',
+                        'message': 'There is no token.',
+                    }
+                    return make_response(jsonify(res)), 401
             else:
-                responseObject = {
+                res = {
                     'status': 'fail',
                     'message': 'There is no user.',
                 }
-            return make_response(jsonify(responseObject)), 404
+                return make_response(jsonify(res)), 404
         except Exception as e:
             print(e)
-            responseObject = {
+            res = {
                 'status': 'fail',
                 'message': 'Try again'
             }
-            return make_response(jsonify(responseObject)), 500
+            return make_response(jsonify(res)), 500

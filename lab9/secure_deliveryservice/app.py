@@ -18,11 +18,11 @@ def create_delivery():
         req_data = request.get_json()
         return Delivery.create(req_data)
     else:
-        responseObject = {
+        res = {
             'status': 'fail',
             'message': 'Try again'
         }
-        return make_response(jsonify(responseObject)), 401
+        return make_response(jsonify(res)), 401
 
 
 @app.route('/deliveries/<d_id>', methods=['GET'])
@@ -30,11 +30,11 @@ def get_delivery(d_id):
     if check_if_authorize(request) == 200:
         return Delivery.get(d_id)
     else:
-        responseObject = {
+        res = {
             'status': 'fail',
             'message': 'Try again'
         }
-        return make_response(jsonify(responseObject)), 401
+        return make_response(jsonify(res)), 401
 
 
 @app.route('/deliveries/<d_id>/status', methods=['PUT'])
@@ -43,11 +43,11 @@ def update_delivery_status(d_id):
         status = request.args.get('status')
         return Status.update(d_id, status)
     else:
-        responseObject = {
+        res = {
             'status': 'fail',
             'message': 'Try again'
         }
-        return make_response(jsonify(responseObject)), 401
+        return make_response(jsonify(res)), 401
 
 
 @app.route('/deliveries/<d_id>', methods=['DELETE'])
@@ -55,11 +55,11 @@ def delete_delivery(d_id):
     if check_if_authorize(request) == 200:
         return Delivery.delete(d_id)
     else:
-        responseObject = {
+        res = {
             'status': 'fail',
             'message': 'Try again'
         }
-        return make_response(jsonify(responseObject)), 401
+        return make_response(jsonify(res)), 401
 
 
 def check_if_authorize(req):

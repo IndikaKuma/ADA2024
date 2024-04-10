@@ -1,5 +1,6 @@
 import datetime
 
+import bcrypt
 from sqlalchemy import Column, String, Integer, Boolean, DateTime
 
 from db import Base
@@ -17,6 +18,6 @@ class UserDAO(Base):
 
     def __init__(self, email, password, admin=False):
         self.email = email
-        self.password = password
+        self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         self.registered_on = datetime.datetime.now()
         self.admin = admin

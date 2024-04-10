@@ -26,26 +26,26 @@ class User:
                 session.commit()
                 # generate the auth token
                 auth_token = encode_auth_token(user.id)
-                responseObject = {
+                res = {
                     'status': 'success',
                     'message': 'Successfully registered.',
                     'auth_token': auth_token
                 }
                 session.close()
-                return make_response(jsonify(responseObject)), 200
+                return make_response(jsonify(res)), 200
             except Exception as e:
                 print(e)
-                responseObject = {
+                res = {
                     'status': 'fail',
                     'message': 'Some error occurred. Please try again.'
                 }
-                return make_response(jsonify(responseObject)), 401
+                return make_response(jsonify(res)), 401
         else:
-            responseObject = {
+            res = {
                 'status': 'fail',
                 'message': 'User already exists. Please Log in.',
             }
-            return make_response(jsonify(responseObject)), 202
+            return make_response(jsonify(res)), 202
 
     @staticmethod
     def get(auth_header):
@@ -59,7 +59,7 @@ class User:
                 session = Session()
                 # check if user already exists
                 user = session.query(UserDAO).filter(UserDAO.id == resp).first()
-                responseObject = {
+                res = {
                     'status': 'success',
                     'data': {
                         'user_id': user.id,
@@ -69,15 +69,15 @@ class User:
                     }
                 }
                 session.close()
-                return make_response(jsonify(responseObject)), 200
-            responseObject = {
+                return make_response(jsonify(res)), 200
+            res = {
                 'status': 'fail',
                 'message': resp
             }
-            return make_response(jsonify(responseObject)), 401
+            return make_response(jsonify(res)), 401
         else:
-            responseObject = {
+            res = {
                 'status': 'fail',
                 'message': 'Provide a valid auth token.'
             }
-            return make_response(jsonify(responseObject)), 401
+            return make_response(jsonify(res)), 401

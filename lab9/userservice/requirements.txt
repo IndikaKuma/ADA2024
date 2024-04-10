@@ -1,4 +1,5 @@
 flask
+bcrypt
 pandas
 numpy
 sqlalchemy
