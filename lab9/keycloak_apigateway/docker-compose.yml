@@ -30,13 +30,13 @@ services:
       - "8080:8081"
   inventory_service:
     build:
-      context: ./../../lab5/inventoryservice
+      context: ./../../lab6/inventoryservice
     container_name: inventory_service_ct
     ports:
       - "5000:5000"
   order_record_service:
     build:
-      context: ./../../lab5/orderrecordservice
+      context: ./../../lab6/orderrecordservice
     container_name: order_record_service_ct
     ports:
       - "5001:5000"
