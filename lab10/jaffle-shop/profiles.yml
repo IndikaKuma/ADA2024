@@ -1,0 +1,10 @@
+jaffle-shop-bigquery-db:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth-secrets
+      project: your_project_id
+      dataset: jaffle_shop
+      threads: 2
+      token: your_access_token
