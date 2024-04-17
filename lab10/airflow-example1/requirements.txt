@@ -1,3 +1,2 @@
 pandas
-apache-airflow==2.6.3
 apache-airflow-providers-google==10.17.0
