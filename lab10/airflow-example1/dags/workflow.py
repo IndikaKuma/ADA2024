@@ -33,11 +33,11 @@ with models.DAG(
         task_id="download_from_gcs",
         object_name="sales.csv",
         bucket="adadata",
-        filename="/home/airflow/gcs/data/sales.csv"
+        filename="local_sales.csv"
     )
 
     transform = CustomTransformationOperator(
-        task_id='transform_data', file_name='/home/airflow/gcs/data/sales.csv')
+        task_id='transform_data', file_name='local_sales.csv')
 
     upload_to_gsc = LocalFilesystemToGCSOperator(
         task_id='upload_to_gsc',
