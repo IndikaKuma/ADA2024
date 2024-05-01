@@ -1,0 +1,30 @@
+steps:
+  - id: 'tf init'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        if [ -d "lab11/create_vm_cloud_build/" ]; then
+          cd lab11/create_vm_cloud_build
+          terraform init -reconfigure -var project_id=ada2024
+        else
+          echo "***************************** SKIPPING Init ********************************"
+          echo "*************** No Terraform Directory *****************"
+          echo "*******************************************************************************"
+        fi
+  - id: 'tf destroy'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        if [ -d "lab11/create_vm_cloud_build/" ]; then
+          cd lab11/create_vm_cloud_build
+          terraform destroy -auto-approve -var project_id=ada2024
+        else
+          echo "***************************** SKIPPING Destroy ********************************"
+          echo "*************** No Terraform Directory *****************"
+          echo "*******************************************************************************"
+        fi
+ 
