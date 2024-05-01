@@ -24,7 +24,7 @@ resource "google_compute_instance" "default" {
   }
 
   # Install Flask
-  metadata_startup_script = "git clone https://github.com/IndikaKuma/ADA2024.git; cd ADA2024/installation_script"
+  metadata_startup_script = "echo hi > /test.txt"
 
   network_interface {
     subnetwork = google_compute_subnetwork.default.id
