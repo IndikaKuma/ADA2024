@@ -1,3 +1,8 @@
+provider "google" {
+  project     = var.project_id
+  region      = "us-central1"
+  zone        = "us-central1-c"
+}
 resource "google_compute_network" "vpc_network" {
   name                    = "my-custom-mode-network"
   auto_create_subnetworks = false
@@ -7,14 +12,14 @@ resource "google_compute_network" "vpc_network" {
 resource "google_compute_subnetwork" "default" {
   name          = "my-custom-subnet"
   ip_cidr_range = "10.0.1.0/24"
-  region        = "us-west1"
+  region        = "us-central1"
   network       = google_compute_network.vpc_network.id
 }
 # Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = "ada-vm"
   machine_type = "f1-micro"
-  zone         = "us-west1-a"
+  zone         = "us-central1-c"
   tags         = ["ssh"]
 
   boot_disk {
