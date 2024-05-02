@@ -83,4 +83,7 @@ resource "null_resource" "remote_script" {
       "/home/${var.gce_ssh_user}/testscript.sh"
     ]
   }
+  depends_on = [
+    google_compute_firewall.ssh
+  ]
 }
